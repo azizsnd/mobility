@@ -81,8 +81,8 @@ Ce projet fait partie d'une **plateforme de services urbains intelligents** dév
 ### Exécution Locale
 ```bash
 # 1. Cloner le projet
-git clone https://github.com/[ton-username]/smart-city-mobility.git
-cd smart-city-mobility
+git clone https://github.com/azizsnd/mobility.git
+cd mobility
 
 # 2. Démarrer MongoDB
 # Sur Windows/Linux/Mac, selon ton OS
@@ -92,5 +92,31 @@ mongod
 mvn clean install
 mvn spring-boot:run
 
-# L'application sera disponible sur : http://localhost:8081
+# L'application sera disponible sur : http://localhost:8080
+```
+## 🐳 Docker & Conteneurisation
+
+### Prérequis
+- Docker Desktop 24.0+ (ou Docker Engine + Docker Compose)
+- 4GB RAM minimum
+
+#Commandes Docker utiles
+```bash
+# Construire l'image
+docker build -t mobility-service .
+
+# Lancer l'application seule
+docker run -p 8080:8080 mobility-service
+
+# Voir les logs
+docker-compose logs -f mobility-app
+
+# Arrêter les services
+docker-compose down
+
+# Nettoyer tout
+docker-compose down -v --rmi all
+
+# Accéder à MongoDB
+docker exec -it mobility_mongodb mongosh city_mobility_db
 ```
